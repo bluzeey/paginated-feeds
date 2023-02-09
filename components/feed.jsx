@@ -18,7 +18,7 @@ function Feed({feedData}) {
         </div>
       )
     }
-  return <p>Error fetching Data</p>
+  return <p className='m-auto'>Error fetching Data</p>
   }
 
 export default Feed

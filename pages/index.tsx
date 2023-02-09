@@ -21,11 +21,18 @@ const Home: NextPage = () => {
   }
   useEffect(()=>{
     const fetchData=async(page:number)=>{
-      await axios.get('/api/feed',{
-        params:{
+      await fetch('./api/feed',{
+        method:"post",
+        headers:{
+          'Accept':'application/json',
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
           id:page
-        }
-      }).then(res=>setFeedData(res.data))
+        })
+      }).then(res=>res.json()).then(data=>setFeedData([...feedData,...data])).catch(err=>{
+        alert('There is some error with fetching data')
+      })
     }
     fetchData(page)
   },[page])
